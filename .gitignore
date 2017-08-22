@@ -13,3 +13,5 @@ venv
 */*.py[cod]
 */*.so
 */*.egg
+
+python3-WebApp

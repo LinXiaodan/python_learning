@@ -3,6 +3,7 @@
 # Created on 17-8-22
 # Author: LXD
 
+import time
 from tornado import httpserver, ioloop, web
 import os
 import pymongo
@@ -36,6 +37,20 @@ class MainHandler(web.RequestHandler):
     def get(self):
         self.render("index.html")
 
+    def post(self, *args, **kwargs):
+        title = self.get_argument('title', None)
+        content = self.get_argument('content', None)
+        if title and content:
+            blog = {
+                'title': title,
+                'content': content,
+                'date': int(time.time())
+            }
+            coll = self.application.db.blog
+            coll.insert(blog)
+            self.redirect('/blog')
+        self.redirect('/')
+
 
 class BlogHandler(web.RequestHandler):
     def get(self):
@@ -61,8 +76,8 @@ class OtherHandler(web.RequestHandler):
 
 def main():
     server = httpserver.HTTPServer(Application())
-    server.listen(9000)
-    logging.info('server is listening at 9000...')
+    server.listen(8080)
+    logging.info('server is listening at 8080...')
     ioloop.IOLoop.current().start()
 
 if __name__ == '__main__':

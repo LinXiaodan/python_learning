@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
+    <title>B612 blog space</title>
 </head>
 <body>
-index
+    <div class="main">
+        <img class="logo" src="{{ static_url('images/1.png') }}">
+        <div class="container">
+            <h1>欢迎访问B612博客空间</h1>
+            <div class="content">
+                <form method="post">
+                    <p>文章标题：</p>
+                    <input type="text" class="title" name="title" placeholder="请在这里输入标题"/>
+                    <p>文章正文：</p>
+                    <textarea placeholder="请在这里输入文章" class="article" name="content"></textarea>
+                    <br>
+                    <input type="submit" class="article" value="发布">
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
